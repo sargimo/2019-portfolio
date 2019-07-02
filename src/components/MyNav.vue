@@ -12,10 +12,30 @@
       <div class="navbar-start"></div>
 
       <div class="navbar-end">
-        <a class="navbar-item">HOME</a>
-        <a class="navbar-item">ABOUT ME</a>
-        <a class="navbar-item">MY WORK</a>
-        <a class="navbar-item">CONTACT</a>
+        <a
+          id="0"
+          @click="clickHandler"
+          v-bind:class="{isActive: activeMenu[0]}"
+          class="navbar-item"
+        >HOME</a>
+        <a
+          id="1"
+          @click="clickHandler"
+          v-bind:class="{isActive: activeMenu[1]}"
+          class="navbar-item"
+        >ABOUT ME</a>
+        <a
+          id="2"
+          @click="clickHandler"
+          v-bind:class="{isActive: activeMenu[2]}"
+          class="navbar-item"
+        >MY WORK</a>
+        <a
+          id="3"
+          @click.prevent="clickHandler"
+          v-bind:class="{isActive: activeMenu[3]}"
+          class="navbar-item"
+        >CONTACT</a>
       </div>
     </div>
   </nav>
@@ -27,13 +47,51 @@
 export default {
   name: "MyNav",
   components: {},
+  data: function() {
+    return {
+      activeMenu: [true, false, false, false]
+    };
+  },
   mounted() {},
-  methods: {}
+  methods: {
+    clickHandler(evt) {
+      this.$emit("$menuClick", evt.target.id);
+      switch (evt.target.id) {
+        case "0":
+          this.activeMenu = [true, false, false, false];
+          break;
+        case "1": {
+          if (this.activeMenu[1]) {
+            this.activeMenu = [true, false, false, false];
+          } else {
+          this.activeMenu = [false, true, false, false];
+          }
+          break;
+        }
+        case "2": {
+          if (this.activeMenu[2]) {
+            this.activeMenu = [true, false, false, false];
+          } else {
+          this.activeMenu = [false, false, true, false];
+          }
+          break;
+        }
+        case "3": {
+          if (this.activeMenu[3]) {
+            this.activeMenu = [true, false, false, false];
+          } else {
+          this.activeMenu = [false, false, false, true];
+          }
+          break;
+        }
+      }
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/settings.scss";
+@import "@/assets/scss/settings.scss";
 
 .navbar {
   position: absolute;
@@ -52,6 +110,10 @@ export default {
     background: transparent;
   }
 }
+.navbar-item.isActive {
+  color: $primary-colour;
+}
+
 .navbar-end {
   margin-right: 50px;
 }

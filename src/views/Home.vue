@@ -1,12 +1,12 @@
 <template>
   <div class="portfolio">
     <div class="content">
-      <About key="about" v-if="aboutIsActive"/>
-      <Work key="work" v-if="workIsActive"/>
+      <About :aboutActive="activeSections[0]"/>
+      <Work :workActive="activeSections[1]"/>
     </div>
     <div class="particles-bg">
       <div id="particles-js" class="hero-particles"></div>
-      <MyNav/>
+      <MyNav @$menuClick="clickHandler"/>
       <Hero/>
     </div>
   </div>
@@ -30,10 +30,10 @@ export default {
   },
   data: function() {
     return {
-      heroIsActive: true,
-      aboutIsActive: true,
-      contactIsActive: false,
-      workIsActive: false
+      activeSections: [false, false]
+      // aboutIsActive: true,
+      // contactIsActive: false,
+      // workIsActive: false
     };
   },
   mounted() {
@@ -46,6 +46,52 @@ export default {
     initParticlesJS() {
       /* eslint-disable */
       particlesJS("particles-js", particlesConfig);
+    },
+    //checks to see if any of the states are active.
+    //Returns true if any states are currently active.
+    checkForActiveState(array) {
+      for (let i = 0; i < array.length; i++) {
+        if (array[i]) {
+          return true;
+        }
+      }
+    },
+    //deals with active states for components from nav click
+    clickHandler(id) {
+      let that = this;
+      switch (id) {
+        case "0":
+          this.activeSections = [false, false];
+          break;
+        case "1":
+          //if the clicked section is already active, minimise it
+          if (that.activeSections[0]) {
+            that.activeSections = [false, false];
+            //else check if any state is active, if true, remove active
+            //set timeout for remove period, activate new state
+          } else if (that.checkForActiveState(that.activeSections)) {
+            that.activeSections = [false, false];
+            setTimeout(function() {
+              that.activeSections = [true, false];
+            }, 500);
+            //else if no state is active, active clicked state
+          } else {
+            that.activeSections = [true, false];
+          }
+          break;
+        case "2":
+          if (that.activeSections[1]) {
+            that.activeSections = [false, false];
+          } else if (that.checkForActiveState(that.activeSections)) {
+            that.activeSections = [false, false];
+            setTimeout(function() {
+              that.activeSections = [false, true];
+            }, 500);
+          } else {
+            that.activeSections = [false, true];
+          }
+          break;
+      }
     }
   }
 };
@@ -75,7 +121,7 @@ export default {
   // position: absolute;
   top: 0;
   left: 0;
-  // z-index: -1;
+  // z-index: 4;
 }
 
 .fade-enter-active,

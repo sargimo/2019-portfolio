@@ -18,11 +18,12 @@ export default {
 @import '../assets/scss/settings.scss';
 
 .name {
-  width: 100%;
-  height: 100%;
+  // max-height: 250px;
   text-align: center;
   position: absolute;
-  top: 0%;
+  top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
   color: #fff;
   display: flex;
@@ -30,13 +31,16 @@ export default {
   justify-content: center;
   align-items: center;
   font-family: 'Raleway', sans-serif;
+  pointer-events: none;
   h1 {
     font-size: 4em;
     z-index: 2;
+    pointer-events: auto;
   }
   p {
     font-size: 2em;
     z-index: 2;
+    pointer-events: auto;
   }
   .work-btn {
     margin-top: 20px;
@@ -46,6 +50,7 @@ export default {
     cursor: pointer;
     transition: all .5s ease;
     z-index: 2;
+    pointer-events: auto;
     &:hover {
       background: $white;
     }
