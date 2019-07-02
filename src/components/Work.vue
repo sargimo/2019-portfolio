@@ -54,6 +54,7 @@ export default {
 <style lang="scss">
 .work {
   font-family: "Raleway", sans-serif;
+  width: 50%;
   padding: 100px 0;
   h1 {
     font-weight: bold;
@@ -68,6 +69,7 @@ export default {
       display: flex;
       flex-direction: column;
       position: relative;
+      padding: 0;
       &:hover {
           img {
               opacity: 0.3;
