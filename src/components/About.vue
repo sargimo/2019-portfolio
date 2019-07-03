@@ -1,15 +1,13 @@
 <template>
   <div v-bind:class="{isActive: aboutActive}" class="about-container is-active">
     <div class="container">
-      <div class="tabs is-centered">
-        <ul>
-          <li @click="swapList" class="tabs-item" v-bind:class="{'is-active': personalActive}">
-            <a>Personal</a>
-          </li>
-          <li @click="swapList" class="tabs-item" v-bind:class="{'is-active': skillsActive}">
-            <a>Skills</a>
-          </li>
-        </ul>
+      <div class="text-area">
+        <h1>Oh hi there, dear reader.</h1>
+        <p>I'm a recent graduate in Web Development and UX Design, putting me well on my way to become the web rockstar I was born to be.</p>
+        <p>I work hard not to take myself too seriously, and find a lot of joy in creativity, learning new technologies and creating amazing experiences. I'm a very fast and eager learner with a good eye for quality and abysmal handwriting.</p>
+        <p>If I'm not changing the world from my computer, you'll probably find me on my bike or playing sport. I love getting outside as a perfect counter balance to the more sedantry work flow of the developer life. </p>
+        <h2>Great news. <span class="secondary">I'M AVAILABLE.</span></h2>
+        <img class="hire-me" src="../assets/hire-me-bike.png">
       </div>
     </div>
   </div>
@@ -46,10 +44,6 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/scss/settings.scss";
 
-p {
-  font-size: 100px;
-  color: $white;
-}
 // .about-me {
 //   width: 100%;
 //   height: 100%;
@@ -62,31 +56,68 @@ p {
 // Grow from top
 .about-container {
   // display: none;
+  background: url('../assets/bike-bg.png') $white;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
   position: relative;
   top: 0;
   width: 100%;
   margin: 0 auto;
   height: 0px;
   transition: all 0.5s ease;
-  z-index: 100;
+  // z-index: 100;
   overflow: hidden;
-  background: $grey;
+  // background: $grey;
   * {
     display: none;
   }
-  .tabs {
-      width: 100%;
+  .text-area {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-right: 20%;
+        &:hover {
+      .hire-me {
+        display: auto;
+        right: 110%;
+        transition: all 5s ease-in-out;
+      }
+    }
   }
-  .tabs-item.isActive {
-      color: $white;
+  h1 {
+    color: $primary-colour;
+    font-size: 2em;
+    padding-top: 100px;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  .green {
+    color: green;
+  }
+  .secondary {
+    padding-left: 10px;
+    color: $secondary-colour;
+  }
+  .hire-me {
+    display: none;
+    transition: all 5s ease-in-out;
+    position: absolute;
+    bottom: -20px;
+    right: -100%;
+    max-height: 250px;
   }
 }
 
 .about-container.isActive {
   display: flex;
   align-items: flex-start;
+  flex-direction: column;
   height: 50vh;
   transition: all 0.5s ease;
+  border-bottom: 5px solid $primary-colour;
   * {
     display: inherit;
   }

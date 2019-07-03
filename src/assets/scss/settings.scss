@@ -2,3 +2,48 @@ $primary-colour: #FA7268;
 $secondary-colour: #4ECDC4;
 $grey: #292F36;
 $white: #f7f7f7;
+
+.btn-inverted {
+    padding: 10px 20px;
+    margin: 20px 10px;
+    border: 1px solid $secondary-colour;
+    background: transparent;
+    color: $secondary-colour;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    &:hover {
+        background: $secondary-colour;
+        color: $white;
+    }
+}
+
+.btn-solid {
+    margin: 50px 20px;
+    padding: 20px 40px;
+    background: $secondary-colour;
+    border: 1px solid $secondary-colour;
+    cursor: pointer;
+    transition: all .5s ease;
+    z-index: 2;
+    pointer-events: auto;
+    &:hover {
+      background: transparent;
+      color: $white;
+    }
+  }
+
+  .btn-transparent {
+    margin: 50px 20px;
+    padding: 20px 40px;
+    background: transparent;
+    border: 1px solid $secondary-colour;
+    color: $white;
+    cursor: pointer;
+    transition: all .5s ease;
+    z-index: 2;
+    pointer-events: auto;
+    &:hover {
+      background: $secondary-colour;
+      color: $white;
+    }
+  }

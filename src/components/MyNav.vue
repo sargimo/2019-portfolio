@@ -55,6 +55,7 @@ export default {
   mounted() {},
   methods: {
     clickHandler(evt) {
+      this.scrollToTop();
       this.$emit("$menuClick", evt.target.id);
       switch (evt.target.id) {
         case "0":
@@ -85,6 +86,16 @@ export default {
           break;
         }
       }
+    },
+    scrollToTop(){
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    },
+    homeIsActive() {
+      this.activeMenu = [true, false, false, false];
     }
   }
 };
@@ -93,12 +104,35 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/settings.scss";
 
+a {
+  outline: none;
+}
+
 .navbar {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   background: transparent;
+}
+@media screen and (min-width: 600px) {
+  .navbar-burger {
+    display: none;
+  }
+  .navbar-end {
+    display: flex;
+  }
+  .navbar-menu {
+    display: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 .navbar-item {
   font-weight: 700;
@@ -116,6 +150,7 @@ export default {
 
 .navbar-end {
   margin-right: 50px;
+  justify-content: center;
 }
 .navbar-burger {
   color: $white;

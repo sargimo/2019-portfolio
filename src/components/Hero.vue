@@ -1,9 +1,12 @@
 <template>
       <transition appear name="fade" mode="out-in">
     <div class="name">
-      <h1>Suhhhh. I am <span class="hero-coral">Geoff Sargison.</span></h1>
-      <p>I like to ride my road bike.</p>
-      <button class="work-btn">check out my work <i class="fas fa-level-down-alt"></i></button>
+      <h1>Sup. I'm <span class="hero-coral">Geoff Sargison.</span></h1>
+      <p>Web Developer. Cyclist. Employable. <span class="secondary">Hilarious</span>.</p>
+      <div class="hero-btns">
+        <button class="btn-transparent">reasons to hire me <i class="fas fa-level-down-alt"></i></button>
+        <button class="btn-solid">check out my work <i class="fas fa-level-down-alt"></i></button>
+      </div>
     </div>
       </transition>
 </template>
@@ -40,21 +43,17 @@ export default {
   p {
     font-size: 2em;
     z-index: 2;
+    letter-spacing: 0.05em;
     pointer-events: auto;
   }
-  .work-btn {
-    margin-top: 20px;
-    padding: 20px 40px;
-    background: $secondary-colour;
-    border: none;
-    cursor: pointer;
-    transition: all .5s ease;
-    z-index: 2;
-    pointer-events: auto;
-    &:hover {
-      background: $white;
-    }
+  .secondary {
+    // color: #e2f53b;
+    color: $secondary-colour;
   }
+  .hero-btns {
+    display: flex;
+  }
+
   .hero-coral {
     color: $primary-colour;
     font-weight: 700;

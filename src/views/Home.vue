@@ -1,12 +1,13 @@
 <template>
   <div class="portfolio">
     <div class="content">
+      <CloseButton @$closeSections="closeSections"/>
       <About :aboutActive="activeSections[0]"/>
       <Work :workActive="activeSections[1]"/>
     </div>
     <div class="particles-bg">
       <div id="particles-js" class="hero-particles"></div>
-      <MyNav @$menuClick="clickHandler"/>
+      <MyNav ref="nav" @$menuClick="clickHandler"/>
       <Hero/>
     </div>
   </div>
@@ -19,6 +20,7 @@ import Hero from "@/components/Hero.vue";
 import Work from "@/components/Work.vue";
 import MyNav from "@/components/MyNav.vue";
 import About from "@/components/About.vue";
+import CloseButton from "@/components/CloseButton.vue";
 
 export default {
   name: "home",
@@ -26,7 +28,8 @@ export default {
     Hero,
     Work,
     MyNav,
-    About
+    About,
+    CloseButton
   },
   data: function() {
     return {
@@ -92,6 +95,11 @@ export default {
           }
           break;
       }
+    },
+    closeSections(){
+      let nav = this.$refs.nav;
+      this.clickHandler("0");
+      nav.homeIsActive();
     }
   }
 };
@@ -111,7 +119,8 @@ export default {
   width: 100%;
   height: 100vh;
   font-family: "Raleway", sans-serif;
-  overflow: scroll;
+  z-index: 6;
+  // overflow: scroll;
 }
 .hero-particles {
   height: 100vh;
