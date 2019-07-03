@@ -20,6 +20,7 @@ html {
   height: 100vh;
   // overflow-y: hidden;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 body {

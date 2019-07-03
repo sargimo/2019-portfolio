@@ -3,12 +3,18 @@
     <div class="content">
       <CloseButton @$closeSections="closeSections"/>
       <About :aboutActive="activeSections[0]"/>
-      <Work :workActive="activeSections[1]"/>
+      <Work @$projectClicked="showProject" :workActive="activeSections[1]"/>
     </div>
     <div class="particles-bg">
       <div id="particles-js" class="hero-particles"></div>
       <MyNav ref="nav" @$menuClick="clickHandler"/>
       <Hero/>
+      <transition name="fade" mode="out-in">
+        <DcmLawyers v-if="activeProjects[0]"/>
+      </transition>
+      <transition name="fade" mode="out-in">
+        <ToTopButton @$GoToTop="toTop" v-if="toTopActive"/>
+      </transition>
     </div>
   </div>
 </template>
@@ -21,6 +27,8 @@ import Work from "@/components/Work.vue";
 import MyNav from "@/components/MyNav.vue";
 import About from "@/components/About.vue";
 import CloseButton from "@/components/CloseButton.vue";
+import DcmLawyers from "@/components/DcmLawyers.vue";
+import ToTopButton from "@/components/ToTopButton.vue";
 
 export default {
   name: "home",
@@ -29,16 +37,28 @@ export default {
     Work,
     MyNav,
     About,
-    CloseButton
+    CloseButton,
+    DcmLawyers,
+    ToTopButton
   },
   data: function() {
     return {
-      activeSections: [false, false]
+      activeSections: [false, false],
+      //refactor this
+      dcmIsActive: false,
+      drivrIsActive: false,
+      wellyMusicIsActive: false,
+      activeProjects: { 0: false, 1: false, 2: false },
+      toTopActive: false
       // aboutIsActive: true,
       // contactIsActive: false,
       // workIsActive: false
     };
   },
+  //   watch: {
+  //     activeProjects: function(){
+  //       toTopActive = true;
+  // },
   mounted() {
     require("particles.js");
     this.$nextTick(() => {
@@ -58,6 +78,15 @@ export default {
           return true;
         }
       }
+    },
+    toTop(){
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+      this.toTopActive = false;
+      this.activeProjects = { 0: false, 1: false, 2: false };
     },
     //deals with active states for components from nav click
     clickHandler(id) {
@@ -96,10 +125,44 @@ export default {
           break;
       }
     },
-    closeSections(){
+    closeSections() {
       let nav = this.$refs.nav;
       this.clickHandler("0");
       nav.homeIsActive();
+    },
+    showProject(id) {
+      //refactor this
+      let that = this;
+      this.activeProjects = { 0: false, 1: false, 2: false };
+      this.toTopActive = false;
+      // this.dcmIsActive = false;
+      // this.drivrIsActive = false;
+      // this.wellyMusicIsActive = false;
+      switch (id) {
+        case "0":
+          this.activeProjects = { 0: true, 1: false, 2: false };
+          //if it goes into a case, button will always be true
+          this.toTopActive = true;
+          break;
+        case "1":
+          this.activeProjects = { 0: false, 1: true, 2: false };
+          this.toTopActive = true;
+          break;
+        case "2":
+          this.activeProjects = { 0: false, 1: false, 2: true };
+          this.toTopActive = true;
+          break;
+      }
+      that.scrollToProject();
+      //double length of time of closing the top section for smooth scrolling experience
+      setTimeout(function() {
+        that.closeSections();
+      }, 1000);
+    },
+    scrollToProject() {
+      setTimeout(function() {
+        document.getElementById("projectStart").scrollIntoView();
+      }, 500);
     }
   }
 };
@@ -135,7 +198,7 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.4s ease-in-out, transform 1.5s ease-in-out;
+  transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
 .fade-enter,
 .fade-leave-to {

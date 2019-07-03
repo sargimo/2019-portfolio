@@ -1,43 +1,43 @@
 <template>
   <div v-bind:class="{isActive: workActive}" class="work">
     <!-- <div class="container"> -->
-      <!-- <h1>My Work</h1> -->
-      <div class="columns">
-        <div class="column is-4-tablet is-12-mobile work-item">
-          <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
-          <div class="content">
-              <div class="text">
-                  <h1>DCM Lawyers</h1>
-                  <p>WordPress CMS</p>
-              </div>
-          </div>
-          <div class="btn">
-              <button class="btn-inverted">see more</button>
+    <!-- <h1>My Work</h1> -->
+    <div class="columns">
+      <div @click="projectClicked('0')" class="column is-4-tablet is-12-mobile work-item">
+        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+        <div class="content">
+          <div class="text">
+            <h1>DCM Lawyers</h1>
+            <p>WordPress CMS</p>
           </div>
         </div>
-        <div class="column is-4-tablet is-12-mobile work-item">
-          <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
-          <div class="content">
-              <div class="text">
-                  <h1>DCM Lawyers</h1>
-                  <p>WordPress CMS</p>
-              </div>
-          </div>
-          <div class="btn">
-              <button class="btn-inverted">see more</button>
+        <div class="btn">
+          <button class="btn-inverted">see more</button>
+        </div>
+      </div>
+      <div @click="projectClicked('1')" class="column is-4-tablet is-12-mobile work-item">
+        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+        <div class="content">
+          <div class="text">
+            <h1>DCM Lawyers</h1>
+            <p>WordPress CMS</p>
           </div>
         </div>
-        <div class="column is-4-tablet is-12-mobile work-item">
-          <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
-          <div class="content">
-              <div class="text">
-                  <h1>DCM Lawyers</h1>
-                  <p>WordPress CMS</p>
-              </div>
+        <div class="btn">
+          <button class="btn-inverted">see more</button>
+        </div>
+      </div>
+      <div @click="projectClicked('2')" class="column is-4-tablet is-12-mobile work-item">
+        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+        <div class="content">
+          <div class="text">
+            <h1>DCM Lawyers</h1>
+            <p>WordPress CMS</p>
           </div>
-          <div class="btn">
-              <button class="btn-inverted">see more</button>
-          </div>
+        </div>
+        <div class="btn">
+          <button class="btn-inverted">see more</button>
+        </div>
 
         <!-- </div> -->
       </div>
@@ -49,9 +49,13 @@
 export default {
   name: "Work",
   props: {
-    workActive: Boolean,
+    workActive: Boolean
   },
-  methods: {}
+  methods: {
+    projectClicked(id) {
+      this.$emit("$projectClicked", id);
+    }
+  }
 };
 </script>
 
@@ -85,78 +89,85 @@ export default {
     font-size: 24px;
   }
   .columns {
-      flex-wrap: wrap;
+    flex-wrap: wrap;
   }
   .work-item {
-      display: flex;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    &:hover {
+      img {
+        opacity: 0;
+        // filter: brightness(50%);
+      }
+      .content {
+        opacity: 1;
+        top: 40%;
+      }
+      .btn {
+        opacity: 1;
+        bottom: 15%;
+      }
+      h1 {
+        color: $grey;
+      }
+    }
+    img {
+      opacity: 1;
+      // display: block;
+      width: 100%;
+      height: auto;
+      transition: 0.5s ease;
+    }
+    .content {
+      transition: 0.5s ease;
+      opacity: 0;
       flex-direction: column;
       position: relative;
       justify-content: center;
       align-items: center;
-      padding: 0;
-      cursor: pointer;
-      &:hover {
-          img {
-              opacity: 0;
-          }
-          .content {
-              opacity: 1;
-              top: 40%;
-          }
-          .btn {
-            opacity: 1;
-            bottom: 15%;
-          }
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    .text {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+    .btn {
+      transition: 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+      .btn-inverted {
+        font-size: 18px;
       }
-      img {
-        opacity: 1;
-        // display: block;
-        width: 100%;
-        height: auto;
-        transition: .5s ease;
-      }
-      .content {
-        transition: .5s ease;
-        opacity: 0;
-        flex-direction: column;
-        position: relative;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-      }
-      .text {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-      }
-      .btn {
-        transition: .5s ease;
-        opacity: 0;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        text-align: center;
-        .btn-inverted {
-          font-size: 18px;
-        }
-      }
+    }
   }
 }
 .work.isActive {
-    display: flex;
-    // height: auto;
-    max-height: 600px;
-    transition: all 0.5s ease-in-out;
-    border-bottom: 5px solid $primary-colour;
-    // * {
-    //     opacity: 1;
-    // }
+  display: flex;
+  // height: auto;
+  max-height: 600px;
+  transition: all 0.5s ease-in-out;
+  border-bottom: 5px solid $primary-colour;
+  // * {
+  //     opacity: 1;
+  // }
+  @include mq("desktop") {
+    max-height: 2000px;
+  }
 }
 </style>

@@ -1,14 +1,12 @@
 <template>
-      <transition appear name="fade" mode="out-in">
     <div class="name">
       <h1>Sup. I'm <span class="hero-coral">Geoff Sargison.</span></h1>
-      <p>Web Developer. Cyclist. Employable. <span class="secondary">Hilarious</span>.</p>
+      <p>Web Rockstar. Cyclist. Employable. <span class="secondary">Hilarious</span>.</p>
       <div class="hero-btns">
         <button class="btn-transparent">reasons to hire me <i class="fas fa-level-down-alt"></i></button>
         <button class="btn-solid">check out my work <i class="fas fa-level-down-alt"></i></button>
       </div>
     </div>
-      </transition>
 </template>
 
 <script>

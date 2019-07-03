@@ -28,15 +28,6 @@ export default {
       }
   },
   methods: {
-      swapList() {
-          if (this.personalActive) {
-              this.personalActive = false;
-              this.skillsActive = true;
-          } else {
-              this.personalActive = true;
-              this.skillsActive = false;
-          }
-      }
   }
 };
 </script>
@@ -80,9 +71,10 @@ export default {
     margin-right: 20%;
         &:hover {
       .hire-me {
-        display: auto;
-        right: 110%;
-        transition: all 5s ease-in-out;
+        // display: auto;
+        // right: 110%;
+        // transition: all 5s ease-in-out;
+        animation: hire-me 9s 1;
       }
     }
   }
@@ -103,12 +95,28 @@ export default {
   }
   .hire-me {
     display: none;
-    transition: all 5s ease-in-out;
     position: absolute;
     bottom: -20px;
     right: -100%;
     max-height: 250px;
   }
+}
+
+@-webkit-keyframes hire-me {
+  0%   { right: -100%; }
+  100% { right: 150%; }
+}
+@-moz-keyframes hire-me {
+  0%   { right: -100%; }
+  100% { right: 150%; }
+}
+@-o-keyframes hire-me {
+  0%   { right: -100%;; }
+  100% { right: 150%; }
+}
+@keyframes hire-me {
+  0%   { right: -100%; }
+  100% { right: 150%; }
 }
 
 .about-container.isActive {
