@@ -4,14 +4,14 @@
       <div class="title">
         <div class="text">
           <h1>DCM Lawyers</h1>
-          <h3>WordPress CMS</h3>
+          <h3>PHP WordPress CMS</h3>
           <!-- <h4>Case Study</h4> -->
         </div>
       </div>
       <div class="highlight">
         <img src="../assets/dcm-images/dcm-hero.jpg" alt="Presentation of DCM's new website">
         <button class="btn-solid">
-          <a href="http://geoff.sargison.18cdwux07.yoobee.net.nz/wux04/">visit website</a>
+          <a href="http://geoff.sargison.18cdwux07.yoobee.net.nz/wux04/" target="_blank">visit website</a>
         </button>
       </div>
       <div class="content">
@@ -176,18 +176,30 @@ export default {
 .title {
   color: $grey;
   position: absolute;
+  @include mq('tablet-wide') {
+    margin-left: 5%;
+  }
   .text {
     position: relative;
+        @include mq ('desktop') {
+        max-width: 70%;
+    }
   }
   h1 {
     margin-top: 100px;
     font-size: 1em;
     font-weight: 700;
+    @include mq ('tablet') {
+      font-size: 0.8em;
+    }
   }
   h3 {
     color: $primary-colour;
     font-weight: 700;
     font-size: 24px;
+      @include mq ('tablet') {
+      font-size: 18px;
+    }
   }
   h4 {
     font-size: 0.8em;
@@ -268,6 +280,9 @@ export default {
   padding: 0;
   * {
     padding: 0 !important;
+  }
+  img {
+    width: 100%;
   }
 }
 

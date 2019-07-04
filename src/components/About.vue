@@ -7,6 +7,12 @@
         <p>I work hard not to take myself too seriously, and find a lot of joy in creativity, learning new technologies and creating amazing experiences. I'm a very fast and eager learner with a good eye for quality and abysmal handwriting.</p>
         <p>If I'm not changing the world from my computer, you'll probably find me on my bike or playing sport. I love getting outside as a perfect counter balance to the more sedantry work flow of the developer life. </p>
         <h2>Great news. <span class="secondary">I'M AVAILABLE.</span></h2>
+        <div class="contact">
+          <p><a class="github" href="https://github.com/sargimo" target="_blank">
+          <i class="fab fa-github"></i>
+          </a>        </p>
+          <p class="email"><i class="fas fa-envelope"></i> gsarge.inzid@gmail.com. <span class="lonely">Get in touch. I'm lonely.</span></p>
+        </div>
         <img class="hire-me" src="../assets/hire-me-bike.png">
       </div>
     </div>
@@ -55,20 +61,25 @@ export default {
   top: 0;
   width: 100%;
   margin: 0 auto;
-  height: 0px;
+  height: auto;
+  max-height: 0px;
   transition: all 0.5s ease;
   // z-index: 100;
   overflow: hidden;
+      @include mq ('tablet-wide') {
+      background: $white;
+    }
   // background: $grey;
-  * {
-    display: none;
-  }
+  // * {
+  //   display: none;
+  // }
   .text-area {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
     margin-right: 20%;
+    padding-bottom: 50px;
         &:hover {
       .hire-me {
         // display: auto;
@@ -76,6 +87,16 @@ export default {
         // transition: all 5s ease-in-out;
         animation: hire-me 9s 1;
       }
+    }
+    @include mq ('desktop-wide') {
+      margin-right: 30%;
+    }
+    @include mq ('desktop') {
+      margin-right: 40%;
+    }
+    @include mq ('tablet-wide') {
+      margin-left: 10%;
+      margin-right: 10%
     }
   }
   h1 {
@@ -101,6 +122,48 @@ export default {
     max-height: 250px;
   }
 }
+.contact {
+  display: flex;
+  align-items: center;
+  *{
+    margin: 0;
+  }
+}
+  .github {
+      align-items: center;
+    i {
+      font-size: 3em;
+      color: $primary-colour;
+      transition: all 0.5s ease;
+      &:hover {
+        color: $secondary-colour;
+        font-size: 3.5em;
+        transition: all 0.5s ease;
+      }
+    }
+  }
+  .email {
+    align-self: center;
+    align-items: center;
+    color: $primary-colour;
+    font-weight: 700;
+    .email-text {
+      display: flex;
+      align-self: center;
+    }
+    i {
+      margin: 0 20px;
+      font-size: 3em;
+      color: $primary-colour;
+      padding: 20px 0;
+      transition: all 0.5s ease;
+    }
+  }
+  .lonely {
+    margin-left: 40px;
+    font-size: 0.8em;
+    color: #d6d6d6;
+  }
 
 @-webkit-keyframes hire-me {
   0%   { right: -100%; }
@@ -123,11 +186,14 @@ export default {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  height: 50vh;
+  max-height: 800px;
   transition: all 0.5s ease;
   border-bottom: 5px solid $primary-colour;
-  * {
-    display: inherit;
+  // * {
+  //   display: inherit;
+  // }
+    @include mq("desktop") {
+    max-height: 2000px;
   }
 }
 

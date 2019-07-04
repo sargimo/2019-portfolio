@@ -30,12 +30,12 @@
           v-bind:class="{isActive: activeMenu[2]}"
           class="navbar-item"
         >MY WORK</a>
-        <a
+        <!-- <a
           id="3"
           @click.prevent="clickHandler"
           v-bind:class="{isActive: activeMenu[3]}"
           class="navbar-item"
-        >CONTACT</a>
+        >CONTACT</a> -->
       </div>
     </div>
   </nav>

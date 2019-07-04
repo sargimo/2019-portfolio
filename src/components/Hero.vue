@@ -3,8 +3,8 @@
       <h1>Sup. I'm <span class="hero-coral">Geoff Sargison.</span></h1>
       <p>Web Rockstar. Cyclist. Employable. <span class="secondary">Hilarious</span>.</p>
       <div class="hero-btns">
-        <button class="btn-transparent">reasons to hire me <i class="fas fa-level-down-alt"></i></button>
-        <button class="btn-solid">check out my work <i class="fas fa-level-down-alt"></i></button>
+        <button @click="btnClick('about')" class="btn-transparent">reasons to hire me <i class="fas fa-level-down-alt"></i></button>
+        <button @click="btnClick('work')" class="btn-solid">check out my work <i class="fas fa-level-down-alt"></i></button>
       </div>
     </div>
 </template>
@@ -12,6 +12,11 @@
 <script>
 export default {
   name: "Hero",
+  methods: {
+    btnClick(id) {
+      this.$emit("$heroButtonClicked", id);
+    }
+  }
 };
 </script>
 
@@ -37,12 +42,18 @@ export default {
     font-size: 4em;
     z-index: 2;
     pointer-events: auto;
+    @include mq ('tablet-wide') {
+      font-size: 3em;
+    }
   }
   p {
     font-size: 2em;
     z-index: 2;
     letter-spacing: 0.05em;
     pointer-events: auto;
+       @include mq ('tablet-wide') {
+      font-size: 1.5em;
+    }
   }
   .secondary {
     // color: #e2f53b;

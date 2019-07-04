@@ -8,9 +8,15 @@
     <div class="particles-bg">
       <div id="particles-js" class="hero-particles"></div>
       <MyNav ref="nav" @$menuClick="clickHandler"/>
-      <Hero/>
+      <Hero @$heroButtonClicked="handleHeroClick"/>
       <transition name="fade" mode="out-in">
         <DcmLawyers v-if="activeProjects[0]"/>
+      </transition>     
+      <transition name="fade" mode="out-in">
+        <Drivr  v-if="activeProjects[1]"/>
+      </transition>
+      <transition name="fade" mode="out-in">
+        <WellyMusic  v-if="activeProjects[2]"/>
       </transition>
       <transition name="fade" mode="out-in">
         <ToTopButton @$GoToTop="toTop" v-if="toTopActive"/>
@@ -29,6 +35,8 @@ import About from "@/components/About.vue";
 import CloseButton from "@/components/CloseButton.vue";
 import DcmLawyers from "@/components/DcmLawyers.vue";
 import ToTopButton from "@/components/ToTopButton.vue";
+import Drivr from "@/components/Drivr.vue";
+import WellyMusic from "@/components/WellyMusic.vue";
 
 export default {
   name: "home",
@@ -39,6 +47,8 @@ export default {
     About,
     CloseButton,
     DcmLawyers,
+    Drivr,
+    WellyMusic,
     ToTopButton
   },
   data: function() {
@@ -69,6 +79,15 @@ export default {
     initParticlesJS() {
       /* eslint-disable */
       particlesJS("particles-js", particlesConfig);
+    },
+    handleHeroClick(id) {
+      let that = this;
+      that.toTop();
+      if (id == "work") {
+        that.clickHandler("2");
+      } else if (id == "about") {
+        that.clickHandler("1");
+      }
     },
     //checks to see if any of the states are active.
     //Returns true if any states are currently active.

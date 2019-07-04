@@ -2,37 +2,37 @@
   <div v-bind:class="{isActive: workActive}" class="work">
     <!-- <div class="container"> -->
     <!-- <h1>My Work</h1> -->
-    <div class="columns">
-      <div @click="projectClicked('0')" class="column is-4-tablet is-12-mobile work-item">
-        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+    <div class="columns is-mobile">
+      <div @click="projectClicked('0')" class="column is-4-tablet work-item">
+        <img src="../assets/dcm-thumbnail2.jpg" alt="DCM Lawyers website">
         <div class="content">
           <div class="text">
             <h1>DCM Lawyers</h1>
-            <p>WordPress CMS</p>
+            <p>PHP WordPress CMS</p>
           </div>
         </div>
         <div class="btn">
           <button class="btn-inverted">see more</button>
         </div>
       </div>
-      <div @click="projectClicked('1')" class="column is-4-tablet is-12-mobile work-item">
-        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+      <div @click="projectClicked('1')" class="column is-4-tablet work-item">
+        <img src="../assets/drivr-thumbnail.jpg" alt="Drivr App showcase">
         <div class="content">
           <div class="text">
-            <h1>DCM Lawyers</h1>
-            <p>WordPress CMS</p>
+            <h1>Drivr</h1>
+            <p>JavaScript Travel Companion</p>
           </div>
         </div>
         <div class="btn">
           <button class="btn-inverted">see more</button>
         </div>
       </div>
-      <div @click="projectClicked('2')" class="column is-4-tablet is-12-mobile work-item">
-        <img src="../assets/dcm-thumbnail.jpg" alt="DCM Lawyers website">
+      <div @click="projectClicked('2')" class="column is-4-tablet work-item">
+        <img src="../assets/welly-music-thumbnail.jpg" alt="Welly music website showcase">
         <div class="content">
           <div class="text">
-            <h1>DCM Lawyers</h1>
-            <p>WordPress CMS</p>
+            <h1>Wellington Music</h1>
+            <p>VueJS & GoogleMaps API Music Guide</p>
           </div>
         </div>
         <div class="btn">
@@ -69,7 +69,7 @@ export default {
   width: 100%;
   height: auto;
   max-height: 0px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease;
   z-index: 100;
   overflow: hidden;
   // * {
@@ -80,6 +80,9 @@ export default {
     font-size: 2em;
     text-transform: uppercase;
     text-align: center;
+    @include mq ('desktop') {
+      font-size: 1.5em
+    }
   }
   p {
     text-align: center;
@@ -87,6 +90,9 @@ export default {
     color: $primary-colour;
     font-weight: 700;
     font-size: 24px;
+    @include mq ('desktop') {
+      font-size: 18px;
+    }
   }
   .columns {
     flex-wrap: wrap;
@@ -107,14 +113,29 @@ export default {
       .content {
         opacity: 1;
         top: 40%;
+        @include mq ('desktop') {
+          top: 50%;
+        }
       }
       .btn {
         opacity: 1;
-        bottom: 15%;
+        bottom: 25%;
       }
       h1 {
         color: $grey;
       }
+      @include mq ('1700') {
+        .btn {
+          bottom: 10%;
+        }
+      }
+      @include mq ('desktop-wide') {
+        .btn {
+          bottom: 0%;
+        }
+    }
+
+
     }
     img {
       opacity: 1;
@@ -154,13 +175,16 @@ export default {
       .btn-inverted {
         font-size: 18px;
       }
+      @include mq ('desktop') {
+        display: none;
+      }
     }
   }
 }
 .work.isActive {
   display: flex;
   // height: auto;
-  max-height: 600px;
+  max-height: 800px;
   transition: all 0.5s ease-in-out;
   border-bottom: 5px solid $primary-colour;
   // * {
