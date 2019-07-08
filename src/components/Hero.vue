@@ -27,6 +27,7 @@ export default {
   // max-height: 250px;
   text-align: center;
   position: absolute;
+  padding: 0 20px;
   top: 0;
   bottom: 0;
   right: 0;
@@ -45,6 +46,9 @@ export default {
     @include mq ('tablet-wide') {
       font-size: 3em;
     }
+    @include mq ('phone') {
+      font-size: 2em;
+    }
   }
   p {
     font-size: 2em;
@@ -54,6 +58,10 @@ export default {
        @include mq ('tablet-wide') {
       font-size: 1.5em;
     }
+    @include mq ('phone') {
+      font-size: 1em;
+      padding-top: 20px;
+    }
   }
   .secondary {
     // color: #e2f53b;
@@ -61,6 +69,21 @@ export default {
   }
   .hero-btns {
     display: flex;
+    i {
+      padding-left: 10px;
+    }
+    @include mq ('phablet') {
+      flex-direction: column;
+      margin-top: 10%;
+      button {
+        margin: 20px;
+      }
+    }
+    @include mq ('phone') {
+      button {
+        padding: 20px 20px;
+      }
+    }
   }
 
   .hero-coral {

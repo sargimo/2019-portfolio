@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navMenu" class="navbar-menu">
       <div class="navbar-start"></div>
 
       <div class="navbar-end">
@@ -47,12 +47,48 @@
 export default {
   name: "MyNav",
   components: {},
+  props: {
+    whichMenuIsActive: String,
+  },
   data: function() {
     return {
       activeMenu: [true, false, false, false]
     };
   },
-  mounted() {},
+  watch: {
+    whichMenuIsActive: function(){
+      let that = this;
+      if (that.whichMenuIsActive == "about") {
+          that.activeMenu = [false, true, false, false];
+      } else if (that.whichMenuIsActive == "work") {
+          that.activeMenu = [false, false, true, false];
+      }
+    }
+  },
+  async mounted() {
+  //from bulma documentation
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+  },
   methods: {
     clickHandler(evt) {
       this.scrollToTop();
@@ -115,7 +151,31 @@ a {
   width: 100%;
   background: transparent;
 }
-@media screen and (min-width: 600px) {
+
+.navbar-menu.is-active {
+    display: inherit;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 0;
+    @include mq ('phone') {
+      background-color: #fff;
+      box-shadow: 0 8px 16px rgba(10,10,10,.1);
+      padding: .5rem 0;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+    }
+  }
+
+@media screen and (min-width: 400px) {
   .navbar-burger {
     display: none;
   }
@@ -125,6 +185,7 @@ a {
   .navbar-menu {
     display: inherit;
     position: absolute;
+    height: 100%;
     top: 0;
     left: 0;
     width: 100%;
@@ -153,7 +214,19 @@ a {
   justify-content: center;
 }
 .navbar-burger {
+  margin-right: 15px;
   color: $white;
+  transition: all .5s ease;
+  z-index: 5;
+  &.is-active {
+    color: $primary-colour;
+  }
+  &:hover {
+    transform: rotate(180deg);
+    transition: all 0.5s ease;
+    background-color: transparent;
+  }
 }
+
 </style>
 

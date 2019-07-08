@@ -6,11 +6,11 @@
         <p>I'm a recent graduate in Web Development and UX Design, putting me well on my way to become the web rockstar I was born to be.</p>
         <p>I work hard not to take myself too seriously, and find a lot of joy in creativity, learning new technologies and creating amazing experiences. I'm a very fast and eager learner with a good eye for quality and abysmal handwriting.</p>
         <p>If I'm not changing the world from my computer, you'll probably find me on my bike or playing sport. I love getting outside as a perfect counter balance to the more sedantry work flow of the developer life. </p>
-        <h2>Great news. <span class="secondary">I'M AVAILABLE.</span></h2>
+        <h2 class="status">Great news. <span class="secondary">I'M AVAILABLE.</span></h2>
         <div class="contact">
           <p><a class="github" href="https://github.com/sargimo" target="_blank">
           <i class="fab fa-github"></i>
-          </a>        </p>
+          </a></p>
           <p class="email"><i class="fas fa-envelope"></i> gsarge.inzid@gmail.com. <span class="lonely">Get in touch. I'm lonely.</span></p>
         </div>
         <img class="hire-me" src="../assets/hire-me-bike.png">
@@ -80,14 +80,6 @@ export default {
     flex-direction: column;
     margin-right: 20%;
     padding-bottom: 50px;
-        &:hover {
-      .hire-me {
-        // display: auto;
-        // right: 110%;
-        // transition: all 5s ease-in-out;
-        animation: hire-me 9s 1;
-      }
-    }
     @include mq ('desktop-wide') {
       margin-right: 30%;
     }
@@ -113,18 +105,35 @@ export default {
   .secondary {
     padding-left: 10px;
     color: $secondary-colour;
+    @include mq ('phone-wide') {
+      display: block;
+      padding-left: 0;
+    }
   }
   .hire-me {
-    display: none;
+    // display: none;
     position: absolute;
     bottom: -20px;
     right: -100%;
     max-height: 250px;
   }
 }
+
+.status {
+  @include mq ('tablet-wide') {
+    width: 100%;
+    text-align: center;
+  }
+}
 .contact {
   display: flex;
   align-items: center;
+  width: 100%;
+  @include mq ('tablet-wide') {
+    padding-top: 20px;
+    display: block;
+    text-align: center;
+  }
   *{
     margin: 0;
   }
@@ -147,6 +156,7 @@ export default {
     align-items: center;
     color: $primary-colour;
     font-weight: 700;
+    width: 100%;
     .email-text {
       display: flex;
       align-self: center;
@@ -157,12 +167,23 @@ export default {
       color: $primary-colour;
       padding: 20px 0;
       transition: all 0.5s ease;
+      @include mq ('tablet-wide') {
+        padding-right: 10px;
+        margin: 0;
+        display: none;
+      }
     }
   }
   .lonely {
     margin-left: 40px;
     font-size: 0.8em;
     color: #d6d6d6;
+    @include mq ('tablet-wide') {
+      display: block;
+      margin-left: 0;
+      text-align: center;
+      width: 100%;
+    }
   }
 
 @-webkit-keyframes hire-me {
@@ -189,11 +210,14 @@ export default {
   max-height: 800px;
   transition: all 0.5s ease;
   border-bottom: 5px solid $primary-colour;
+  .hire-me {
+    animation: hire-me 9s 1;
+  }
   // * {
   //   display: inherit;
   // }
     @include mq("desktop") {
-    max-height: 2000px;
+    max-height: 1000px;
   }
 }
 

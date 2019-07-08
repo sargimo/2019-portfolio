@@ -39,6 +39,7 @@ export default {
   align-items: center;
   transform: rotate(0deg);
   transition: all 0.5s ease;
+  cursor: pointer;
   i {
     font-size: 1.8em;
   }

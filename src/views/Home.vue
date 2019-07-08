@@ -7,7 +7,7 @@
     </div>
     <div class="particles-bg">
       <div id="particles-js" class="hero-particles"></div>
-      <MyNav ref="nav" @$menuClick="clickHandler"/>
+      <MyNav ref="nav" :whichMenuIsActive="activeMenu" @$menuClick="clickHandler"/>
       <Hero @$heroButtonClicked="handleHeroClick"/>
       <transition name="fade" mode="out-in">
         <DcmLawyers v-if="activeProjects[0]"/>
@@ -54,6 +54,7 @@ export default {
   data: function() {
     return {
       activeSections: [false, false],
+      activeMenu: "home",
       //refactor this
       dcmIsActive: false,
       drivrIsActive: false,
@@ -85,8 +86,10 @@ export default {
       that.toTop();
       if (id == "work") {
         that.clickHandler("2");
+        that.activeMenu = "work";
       } else if (id == "about") {
         that.clickHandler("1");
+        that.activeMenu = "about";
       }
     },
     //checks to see if any of the states are active.
@@ -176,12 +179,12 @@ export default {
       //double length of time of closing the top section for smooth scrolling experience
       setTimeout(function() {
         that.closeSections();
-      }, 1000);
+      }, 1200);
     },
     scrollToProject() {
       setTimeout(function() {
         document.getElementById("projectStart").scrollIntoView();
-      }, 500);
+      }, 600);
     }
   }
 };

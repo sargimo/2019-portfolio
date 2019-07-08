@@ -81,7 +81,14 @@ export default {
     text-transform: uppercase;
     text-align: center;
     @include mq ('desktop') {
-      font-size: 1.5em
+      font-size: 1.5em;
+      color: $white;
+    }
+    @include mq ('tablet') {
+      font-size: 1em;
+    }
+    @include mq ('phone-wide') {
+      font-size: 0.8em;
     }
   }
   p {
@@ -92,6 +99,12 @@ export default {
     font-size: 24px;
     @include mq ('desktop') {
       font-size: 18px;
+    }
+    @include mq ('tablet') {
+      font-size: 14px;
+    }
+    @include mq ('phone-wide') {
+      font-size: 10px;
     }
   }
   .columns {
@@ -108,7 +121,9 @@ export default {
     &:hover {
       img {
         opacity: 0;
-        // filter: brightness(50%);
+        @include mq ('desktop') {
+        opacity: 1;
+        }
       }
       .content {
         opacity: 1;
@@ -143,6 +158,9 @@ export default {
       width: 100%;
       height: auto;
       transition: 0.5s ease;
+      @include mq ('desktop') {
+        filter: brightness(40%);
+      }
     }
     .content {
       transition: 0.5s ease;
@@ -157,6 +175,10 @@ export default {
       transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
       text-align: center;
+      @include mq ('desktop') {
+        opacity: 1;
+        top: 40%;
+      }
     }
     .text {
       display: flex;
@@ -191,7 +213,7 @@ export default {
   //     opacity: 1;
   // }
   @include mq("desktop") {
-    max-height: 2000px;
+    max-height: 1000px;
   }
 }
 </style>

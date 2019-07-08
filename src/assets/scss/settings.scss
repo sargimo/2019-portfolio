@@ -63,9 +63,19 @@ $portfolio-breakpoints: (
     transition: all .5s ease;
     z-index: 2;
     pointer-events: auto;
+    color: $grey;
+    i {
+      transition: all 0.5s ease;
+      color: $grey;
+    }
     &:hover {
       background: transparent;
       color: $white;
+      i {
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+        color: $white;
+      }
     }
     a {
       color: $grey;
@@ -83,8 +93,16 @@ $portfolio-breakpoints: (
     transition: all .5s ease;
     z-index: 2;
     pointer-events: auto;
+    i {
+      transition: all 0.5s ease;
+    }
     &:hover {
       background: $secondary-colour;
       color: $white;
+      i {
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+        transform: rotateX(180deg);color: $white;
+      }
     }
   }

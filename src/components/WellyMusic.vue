@@ -56,10 +56,18 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/settings.scss";
-
+#projectStart {
+  @include mq ('tablet-wide') {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 .title {
   color: $grey;
   position: absolute;
+    @include mq ('tablet') {
+    position: static;
+  }
   @include mq('tablet-wide') {
     margin-left: 5%;
   }
@@ -103,11 +111,13 @@ export default {
   }
   .features {
     margin: 0;
+    list-style-position: inside;
     li {
       font-size: 14px;
       //   color: $primary-colour;
       font-weight: 700;
-      list-style: none;
+      padding: 10px;
+      list-style-image: url('../assets/check-solid.svg');
       letter-spacing: 0.05em;
     }
   }
@@ -135,11 +145,17 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+  @include mq ('tablet') {
+    margin-top: 0;
+  }
   img {
     width: 80%;
   }
   .btn-solid {
     margin: 0 0 50px 0;
+    @include mq ('phone-wide') {
+      margin-top: 20px;
+    }
     &:hover {
       color: $secondary-colour;
     }
