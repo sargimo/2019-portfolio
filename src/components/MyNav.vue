@@ -152,6 +152,14 @@ a {
   background: transparent;
 }
 
+.navbar-menu {
+  transition: opacity 0.5s, visibility 0.5s;
+  @include mq ('phone') {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .navbar-menu.is-active {
     display: inherit;
     position: absolute;
@@ -163,6 +171,7 @@ a {
     box-shadow: none;
     margin: 0 auto;
     padding: 0;
+    transition: opacity 0.5s;
     @include mq ('phone') {
       background-color: #fff;
       box-shadow: 0 8px 16px rgba(10,10,10,.1);
@@ -172,6 +181,21 @@ a {
       top: 0;
       left: 0;
       width: 100vw;
+      opacity: 1;
+      visibility: visible;
+      .navbar-item {
+        text-align: center;
+        color: $grey;
+      }
+      .navbar-item.isActive {
+        color: $primary-colour;
+      }
+      .navbar-end {
+        height: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 
@@ -193,6 +217,7 @@ a {
     box-shadow: none;
     margin: 0 auto;
     padding: 0;
+    transition: opacity 0.5s, visibility 0.5s;
   }
 }
 .navbar-item {
