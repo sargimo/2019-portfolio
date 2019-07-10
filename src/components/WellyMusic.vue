@@ -56,11 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/settings.scss";
-#projectStart {
-  @include mq ('tablet-wide') {
-    padding-left: 20px;
-  }
-}
+
 .title {
   color: $grey;
   position: absolute;
