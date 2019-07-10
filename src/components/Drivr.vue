@@ -60,7 +60,6 @@ export default {
 #projectStart {
   @include mq ('tablet-wide') {
     padding-left: 20px;
-    padding-right: 20px;
   }
 }
 .title {
